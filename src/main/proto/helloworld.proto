@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.mycompany.app.helloworld";
+option java_outer_classname = "HelloWorldProto";
+
+package helloworld;
+
+service Greeter {
+  // 方式1：简单RPC方式。请求是一个对象，返回也是一个对象。这是最简单的方式，类似于函数调用
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  // 方式2：服务端流式PRC。请求是一个对象，返回流（可从中得到多个对象）
+  //rpc SayHelloReplyStreaming (HelloRequest) returns (stream HelloReply) {}
+
+  // 方式3：客户端流式RPC。请求是流，返回一个对象
+  //rpc SayHelloRequestStreaming (stream HelloRequest) returns (HelloReply) {}
+
+  // 方式4：双向流式RPC。请求和返回都是流
+  //rpc SayHelloBiStreaming (stream HelloRequest) returns (stream HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
